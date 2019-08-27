@@ -1,0 +1,82 @@
+# --------------------------------------------
+# SERVER CONFIGURATION
+# --------------------------------------------
+server:
+  port: 8101
+
+# --------------------------------------------
+# SPRING SECURITY CONFIGURATION
+# --------------------------------------------
+security:
+  ignored: /swagger-ui.html, /webjars/**, /swagger-resources/**, /v2/api-docs/**, /configuration/ui/**, /configuration/security/**, /health
+  basic:
+    enabled: true
+  filter-order: 10
+  user:
+    name: admin
+    password: s3cr3t
+
+management:
+  context-path: /admin
+  security:
+    enabled: false
+
+# --------------------------------------------
+# LOG CONFIGURATION
+# --------------------------------------------
+logging:
+  file: ${spring.application.name}.log
+  path: /var/log
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
+# --------------------------------------------
+# SPRING APP CONFIGURATION
+# --------------------------------------------
+spring:
+  jmx:
+    default-domain: cloud.config.server
+  aop:
+    proxy-target-class: false
+  profiles:
+    active: devaws
+  mvc:
+    throw-exception-if-no-handler-found: true
+    resources:
+      add-mappings: false
+
+# --------------------------------------------
+# SPRING CACHE
+# --------------------------------------------
+  cache:
+    type: simple
+    
+# --------------------------------------------
+# SPRING MQ CONFIGURATION
+# --------------------------------------------
+  rabbitmq:
+    host: ${RABBIT_URI:172.21.1.251}
+    port: ${RABBIT_PORT:5672}
+    username: ${RABBIT_USER:guest}
+    password: ${RABBIT_PASS:guest}
+    
+# --------------------------------------------
+# SLEUTH CONFIGURATION
+# --------------------------------------------
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 1.0
+    rxjava:
+      schedulers:
+        hook:
+          enabled: false
+
+# --------------------------------------------
+# RIBBON CONFIGURATION
+# --------------------------------------------
+ribbon:
+  eureka:
+    enabled: true
