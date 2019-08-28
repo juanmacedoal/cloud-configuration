@@ -1,6 +1,6 @@
+--- # --------------------------------------------
 # --------------------------------------------
 # SERVER CONFIGURATION
-# --------------------------------------------
 server:
   port: 8083
   context-path: /
@@ -18,16 +18,18 @@ security:
     password: s3cr3t
 
 management:
-  context-path: /admin
+  server:
+    servlet:
+      context-path: /admin
   security:
     enabled: false
 
 # --------------------------------------------
 # LOG CONFIGURATION
 # --------------------------------------------
-logging:
-  file: ${spring.application.name}.log
-  path: /var/log
+# logging:
+  # file: ${spring.application.name}.log
+  # path: /var/log
 
 # --------------------------------------------
 # SPRING APP CONFIGURATION
@@ -175,7 +177,7 @@ hystrix:
 # --------------------------------------------
 # CUSTOM CONFIGURATIONS
 # --------------------------------------------
-vac:
+custom:
   logger:
     enabled: true
   common:
@@ -216,10 +218,10 @@ zuul:
       url: http://localhost:8083/admin/
     config:
       path: /config/**
-      serviceId: vac-config
+      serviceId: cloud-config
     languages:
       path: /lang/**
-      serviceId: config
+      serviceId: cloud-config
     eureka_fonts:
       path: /eureka/fonts/**
       url: http://localhost:8082/eureka/fonts/
@@ -239,12 +241,10 @@ zuul:
     # --------------------------------------------
     # ZUUL MICROSERVICES ROUTES CONFIGURATION
     # --------------------------------------------
-    journal:
-      path: /api-console/journal/**
-      serviceId: vac-journal
+
     log:
-      path: /api-console/log/**
-      serviceId: vac-logger
+      path: /api/log/**
+      serviceId: logger
 
     # --------------------------------------------
     # ZUUL WEB ROUTES CONFIGURATION
@@ -252,10 +252,4 @@ zuul:
     rabbit:
       path: /rabbit/**
       url: http://localhost:15672/
-# vac-config:
-#   ribbon:
-# ReadTimeout: 3000
-# ConnectTimeout: 3000
-# OkToRetryOnAllOperations: true
-# MaxAutoRetriesNextServer: 2
-# MaxAutoRetries: 5
+

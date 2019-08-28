@@ -18,7 +18,9 @@ security:
     password: s3cr3t
 
 management:
-  context-path: /admin
+  server:
+    servlet:
+      context-path: /admin
   security:
     enabled: false
 
@@ -161,7 +163,7 @@ hystrix:
 # --------------------------------------------
 # CUSTOM CONFIGURATIONS
 # --------------------------------------------
-vac:
+custom:
   logger:
     enabled: true
   common:
@@ -202,35 +204,35 @@ zuul:
       url: http://localhost:8081/admin/
     config:
       path: /config/**
-      serviceId: vac-config
+      serviceId: cloud-config
     languages:
       path: /lang/**
-      serviceId: vac-config
+      serviceId: cloud-config
     eureka_fonts:
       path: /eureka/fonts/**
-      url: http://172.17.0.1:8082/eureka/fonts/
+      url: http://localhost:8082/eureka/fonts/
     eureka_css:
       path: /eureka/css/**
-      url: http://172.17.0.1:8082/eureka/css/
+      url: http://localhost:8082/eureka/css/
     eureka_js:
       path: /eureka/js/**
-      url: http://172.17.0.1:8082/eureka/js/
+      url: http://localhost:8082/eureka/js/
     eureka_images:
       path: /eureka/images/**
-      url: http://172.17.0.1:8082/eureka/images/
+      url: http://localhost:8082/eureka/images/
     eureka:
       path: /eureka/**
-      url: http://172.17.0.1:8082
+      url: http://localhost:8082
 
     # --------------------------------------------
     # ZUUL MICROSERVICES ROUTES CONFIGURATION
     # --------------------------------------------
     journal:
-      path: /api-console/journal/**
-      serviceId: vac-journal
+      path: /api/journal/**
+      serviceId: journal
     log:
-      path: /api-console/log/**
-      serviceId: vac-logger
+      path: /api/log/**
+      serviceId: logger
 
     # --------------------------------------------
     # ZUUL WEB ROUTES CONFIGURATION

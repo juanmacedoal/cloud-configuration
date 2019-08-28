@@ -1,6 +1,6 @@
+--- # --------------------------------------------
 # --------------------------------------------
 # SERVER CONFIGURATION
-# --------------------------------------------
 server:
   port: 8101
   context-path: /
@@ -18,7 +18,9 @@ security:
     password: s3cr3t
 
 management:
-  context-path: /admin
+  server:
+    servlet:
+      context-path: /admin
   security:
     enabled: false
 
@@ -48,24 +50,24 @@ spring:
     resources:
       add-mappings: false
 
-# --------------------------------------------
-# SPRING CACHE
-# --------------------------------------------
+  # --------------------------------------------
+  # SPRING CACHE
+  # --------------------------------------------
   cache:
     type: simple
-    
-# --------------------------------------------
-# SPRING MQ CONFIGURATION
-# --------------------------------------------
+
+  # --------------------------------------------
+  # SPRING MQ CONFIGURATION
+  # --------------------------------------------
   rabbitmq:
     host: ${RABBIT_URI:172.21.1.251}
     port: ${RABBIT_PORT:5672}
     username: ${RABBIT_USER:guest}
     password: ${RABBIT_PASS:guest}
-    
-# --------------------------------------------
-# SLEUTH CONFIGURATION
-# --------------------------------------------
+
+  # --------------------------------------------
+  # SLEUTH CONFIGURATION
+  # --------------------------------------------
   sleuth:
     enabled: true
     sampler:
@@ -81,5 +83,3 @@ spring:
 ribbon:
   eureka:
     enabled: true
-
-

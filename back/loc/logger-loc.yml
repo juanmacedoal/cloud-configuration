@@ -1,6 +1,6 @@
+--- # --------------------------------------------
 # --------------------------------------------
 # SERVER CONFIGURATION
-# --------------------------------------------
 server:
   port: 8095
   context-path: /
@@ -18,7 +18,9 @@ security:
     password: s3cr3t
 
 management:
-  context-path: /admin
+  server:
+    servlet:
+      context-path: /admin
   security:
     enabled: false
 
@@ -29,7 +31,7 @@ logging:
   file: ${spring.application.name}.log
   path: /var/log
   level:
-    zipkin: 'DEBUG'
+    zipkin: "DEBUG"
 
 # --------------------------------------------
 # SPRING APP CONFIGURATION
@@ -103,7 +105,7 @@ zipkin:
   storage:
     type: mem
   query:
-    allowed-origins: '*'
+    allowed-origins: "*"
 
 # --------------------------------------------
 # CUSTOM CONFIGURATIONS
@@ -113,6 +115,6 @@ vac:
     enabled: true
     logger-ui:
       enabled: true
-      url: 'http://loggerui.io/log/'
+      url: "http://loggerui.io/log/"
   common:
     swagger: true
