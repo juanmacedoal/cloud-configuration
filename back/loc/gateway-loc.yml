@@ -17,11 +17,12 @@ security:
     password: s3cr3t
 
 management:
-  server:
-    servlet:
-      context-path: /admin
   security:
     enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 # --------------------------------------------
 # LOG CONFIGURATION
@@ -30,20 +31,20 @@ management:
   # file: ${spring.application.name}.log
   # path: /var/log
 
-# --------------------------------------------
-# SPRING APP CONFIGURATION
-# --------------------------------------------
-spring:
-  jmx:
-    default-domain: cloud.config.server
-  aop:
-    proxy-target-class: false
-  profiles:
-    active: loc
-  mvc:
-    throw-exception-if-no-handler-found: true
-    resources:
-      add-mappings: false
+## --------------------------------------------
+## SPRING APP CONFIGURATION
+## --------------------------------------------
+#spring:
+#  jmx:
+#    default-domain: cloud.config.server
+#  aop:
+#    proxy-target-class: false
+#  profiles:
+#    active: loc
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+#    resources:
+#      add-mappings: false
 
 #  # --------------------------------------------
 #  # SPRING CACHE
