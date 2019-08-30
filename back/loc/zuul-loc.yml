@@ -27,9 +27,11 @@ management:
 # --------------------------------------------
 # LOG CONFIGURATION
 # --------------------------------------------
-# logging:
-  # file: ${spring.application.name}.log
-  # path: /var/log
+logging:
+  file: ${spring.application.name}.log
+  path: /var/log   
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 
 ## --------------------------------------------
 ## SPRING APP CONFIGURATION
