@@ -40,7 +40,7 @@ logging:
 # --------------------------------------------
 spring:
   jmx:
-    default-domain: cloud.config.server
+    enabled: false
   aop:
     proxy-target-class: false
   profiles:
